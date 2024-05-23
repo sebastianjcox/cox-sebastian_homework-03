@@ -96,10 +96,14 @@ ggpairs(drought_exp_clean, # data frame
 Choose 3 pairs of variables to compare. Make notes of those comparisons below.    
 
 **insert comparison 1 here**  
-
+Leaf Dry Weight & Specific Leaf Area: There is no correlation
+(Pearson's r = 0.033) between the two variables.
 **insert comparison 2 here**  
-
+Root Weight and Total Weight: There is a strong positive correlation (Pearson's
+r = 0.858) between the variables.
 **insert comparison 3 here**
+Shoot Weight and Root Weight: There is a moderately strong positive correlation 
+(Pearson's r = 0.553) between the weights.
 
 ## Preliminary visualizations  
 
