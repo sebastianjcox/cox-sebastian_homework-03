@@ -101,7 +101,8 @@ impact the model predictions.
 
 # Problem 1. Multiple linear regression: model selection and construction
 
-**a)**
+**a) Comparing Models **
+
 
 | Model Number | Predictors                    |
 |--------------|-------------------------------|
@@ -110,3 +111,24 @@ impact the model predictions.
 | 2            | SLA, Water Treatment          |
 | 3            | SLA, Species                  |
 | 4            | Species, Water Treatment      |
+
+: Model Numbers and Predictors {#tbl-letters}
+
+
+
+**b) Statistical Methods**
+
+To explore the influence of specific leaf area (mm^2^/g), water treatment 
+(well-watered or drought-stressed), and species on plant mass, I created and 
+compared multiple linear regression models. One model served as a baseline and 
+contained no predictors, one contained all three predictors, the the three 
+subsequent models contained each permutation of two of the predictors 
+(see **Table 1** for details). In order to decide upon the model that best 
+described how plant growth changes, I compared the Akaike Information Criterions
+(AICs), which takes into account the accuracy of the model's predictions and its
+complexity. The model with the lowest AIC was *model 4*, which has species and 
+water treatment as predictors. To ensure that *model 4* adhered to linear model
+assumptions, I analyzed Residual-Fitted and Scale-Location plots for 
+homoscedasticity of residuals, a QQ plot for normality of residuals, and a 
+Cook's distance plot for outliers. The diagnostic plots indicated that the model
+conformed to the assumptions and was suitable for analysis.
