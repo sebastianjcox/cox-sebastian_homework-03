@@ -12,7 +12,7 @@ execute: # for all code chunks
 
 Forked repository: <https://github.com/sebastianjcox/cox-sebastian_homework-03>
 
-Reading in packages
+Reading in packages and cleaning data
 ```{r}
 
 # general use
@@ -34,8 +34,79 @@ library(ggeffects)
 library(gtsummary)
 library(flextable)
 library(modelsummary)
+
+drought_exp <- read_xlsx(path = here("data", #reading in data
+                                     "Valliere_etal_EcoApps_Data.xlsx"),
+                         sheet = "First Harvest")
+
+#cleaning data
+
+drought_exp_clean <- drought_exp %>% 
+  clean_names() %>% # nicer column names
+  mutate(species_name = case_when( # adding column with species scientific names
+    species == "ENCCAL" ~ "Encelia californica", # bush sunflower
+    species == "ESCCAL" ~ "Eschscholzia californica", # California poppy
+    species == "PENCEN" ~ "Penstemon centranthifolius", # Scarlet bugler
+    species == "GRICAM" ~ "Grindelia camporum", # great valley gumweed
+    species == "SALLEU" ~ "Salvia leucophylla", # Purple sage
+    species == "STIPUL" ~ "Nasella pulchra", # Purple needlegrass
+    species == "LOTSCO" ~ "Acmispon glaber" # deerweed
+  )) %>% 
+  relocate(species_name, .after = species) %>% # moving species_name column after species
+  mutate(water_treatment = case_when( # adding column with full treatment names
+    water == "WW" ~ "Well watered",
+    water == "DS" ~ "Drought stressed"
+  )) %>% 
+  relocate(water_treatment, .after = water) # moving water_treatment column after water
 ```
+
+Models
+```{r}
+#Null model
+model0 <- lm(total_g ~ 1, 
+             data = drought_exp_clean)
+#Saturated model
+model1 <- lm(total_g ~ sla + water_treatment + species_name,
+             data = drought_exp_clean)
+#Predictors: SLA & Water Treatment
+model2 <- lm(total_g ~ sla + water_treatment,
+             data = drought_exp_clean)
+#Predictors: SLA & Species
+model3 <- lm(total_g ~ sla + species_name,
+             data = drought_exp_clean)
+#Predictors: Water Treatment & Species
+model4 <- lm(total_g ~ water_treatment + species_name,
+             data = drought_exp_clean)
+
+```
+
+Comparing Models
+```{r}
+model.sel(model0,
+          model1, 
+          model2, 
+          model3,
+          model4)
+```
+*Model 4* has the lowest AIC. Now, we will examine the diagnostic plots to
+see if it is viable.
+
+```{r}
+par(mfrow = c(2, 2)) #show the diagnostics as a 2x2 table
+plot(model4)
+```
+The diagnostic plots look good: the residuals appear to be homoscedastic and
+normally distributed, and it appears that there are not any outliers that would
+impact the model predictions.
 
 # Problem 1. Multiple linear regression: model selection and construction
 
 **a)**
+
+| Model Number | Predictors                    |
+|--------------|-------------------------------|
+| 0            | None                          |
+| 1            | SLA, Species, Water Treatment |
+| 2            | SLA, Water Treatment          |
+| 3            | SLA, Species                  |
+| 4            | Species, Water Treatment      |
