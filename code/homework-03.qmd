@@ -126,9 +126,50 @@ subsequent models contained each permutation of two of the predictors
 (see **Table 1** for details). In order to decide upon the model that best 
 described how plant growth changes, I compared the Akaike Information Criterions
 (AICs), which takes into account the accuracy of the model's predictions and its
-complexity. The model with the lowest AIC was *model 4*, which has species and 
-water treatment as predictors. To ensure that *model 4* adhered to linear model
+complexity. The model with the lowest AIC was *Model 4*, which has species and 
+water treatment as predictors. To ensure that *Model 4* adhered to linear model
 assumptions, I analyzed Residual-Fitted and Scale-Location plots for 
 homoscedasticity of residuals, a QQ plot for normality of residuals, and a 
 Cook's distance plot for outliers. The diagnostic plots indicated that the model
 conformed to the assumptions and was suitable for analysis.
+
+**c) Visualization**
+
+```{r}
+#storing model predictions
+model_preds <- ggpredict(model4, 
+                         terms = c("water_treatment", 
+                                   "species_name"))
+
+ggplot(drought_exp_clean,
+       aes(x = water_treatment,
+           y = total_g,
+           color = water_treatment
+           )) +
+  geom_point(
+             size = 1,
+             alpha = 0.2) +
+  geom_line(data = model_preds, 
+            aes(x = x, y = predicted, group = group), 
+            color = "aquamarine4" ,
+            size = 1,
+            linetype = "dotted") +
+  geom_line(data = model_preds, 
+            aes(x = x, y = conf.low, group = group), 
+            color = "darkblue" ,
+            size = 0.5,
+            linetype = "dotted") +
+  geom_line(data = model_preds, 
+            aes(x = x, y = conf.high, group = group), 
+            size = 0.5,
+             color = "darkblue",
+            linetype = "dotted") +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+  facet_wrap(~group) +
+  labs(x = "Water Treatment",
+       y = "Total Biomass (g)",
+       title = "Figure 1: Total Plant Biomass in Different Water Treatments")+
+  theme(legend.position = "none")
+  
+
+```
