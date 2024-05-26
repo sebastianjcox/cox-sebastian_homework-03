@@ -1,0 +1,41 @@
+---
+title: "homework-03"
+author: "Sebastian Cox"
+date: "2 June 2024"
+format:
+  html: 
+    toc: true # includes a table of contents in rendered html format
+execute: # for all code chunks
+    warning: false # do not display warnings
+    message: false # do not display messages
+---
+
+Forked repository: <https://github.com/sebastianjcox/cox-sebastian_homework-03>
+
+Reading in packages
+```{r}
+
+# general use
+library(tidyverse)
+library(readxl)
+library(here)
+library(janitor)
+
+# visualizing pairs
+library(GGally)
+
+# model selection
+library(MuMIn)
+
+# model predictions
+library(ggeffects)
+
+# model tables
+library(gtsummary)
+library(flextable)
+library(modelsummary)
+```
+
+# Problem 1. Multiple linear regression: model selection and construction
+
+**a)**
