@@ -220,3 +220,10 @@ Insert draft
 Insert Artist Statement
 
 #Problem 3. Statistical critique
+
+**a) Revisit and summarize**
+
+The authors used F-tests to examine the hypothesis the the distances that birds migrate are shortening over time due to climate change. The tables illustrate the different variables that they considered for their final model, indicating whether or not each variable was included.
+
+![](/Users/sebastiancox/Desktop/2023-24/S24/ENVS-193DS/git/cox-sebastian_homework-03/Table1.png)
+![](/Users/sebastiancox/Desktop/2023-24/S24/ENVS-193DS/git/cox-sebastian_homework-03/Table2.png)
