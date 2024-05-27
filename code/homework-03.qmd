@@ -94,6 +94,7 @@ see if it is viable.
 ```{r}
 par(mfrow = c(2, 2)) #show the diagnostics as a 2x2 table
 plot(model4)
+
 ```
 The diagnostic plots look good: the residuals appear to be homoscedastic and
 normally distributed, and it appears that there are not any outliers that would
@@ -141,35 +142,81 @@ model_preds <- ggpredict(model4,
                          terms = c("water_treatment", 
                                    "species_name"))
 
-ggplot(drought_exp_clean,
-       aes(x = water_treatment,
+ggplot(drought_exp_clean, #use clean data set
+       aes(x = water_treatment, #set axes
            y = total_g,
-           color = water_treatment
+           color = water_treatment #color by water treatment
            )) +
-  geom_point(
+  geom_point( #display data as points
              size = 1,
-             alpha = 0.2) +
-  geom_line(data = model_preds, 
-            aes(x = x, y = predicted, group = group), 
-            color = "aquamarine4" ,
+             alpha = 0.2) + #make the points transparent
+  geom_line(data = model_preds, #use model predictions
+            aes(x = x, y = predicted, group = group), #plot regression line
+            color = "aquamarine4" , #change color
             size = 1,
-            linetype = "dotted") +
+            linetype = "dotted") + #make line dotted
   geom_line(data = model_preds, 
-            aes(x = x, y = conf.low, group = group), 
+            aes(x = x, y = conf.low, group = group), #plot low end of confidence interval
             color = "darkblue" ,
             size = 0.5,
             linetype = "dotted") +
   geom_line(data = model_preds, 
-            aes(x = x, y = conf.high, group = group), 
+            aes(x = x, y = conf.high, group = group), #plot high end of confidence interval
             size = 0.5,
              color = "darkblue",
             linetype = "dotted") +
-  theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
-  facet_wrap(~group) +
-  labs(x = "Water Treatment",
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) + #rotate x-axis lables
+  facet_wrap(~group) + #facet by species
+  labs(x = "Water Treatment", #label graph
        y = "Total Biomass (g)",
-       title = "Figure 1: Total Plant Biomass in Different Water Treatments")+
-  theme(legend.position = "none")
+       title = "Total Plant Biomass Differs Across Water Treatments")+
+  theme(legend.position = "none") #remove legend
   
 
 ```
+**d) Caption**
+
+**Figure 1. Total plant biomass differs across water treatments.** Data from 
+"Can we condition native plants to increase drought tolerance and improve 
+restoration success?" (J. Valliere, et al., 2019). Points total plant 
+biomass (g) of plants grown in well watered (blue) and drought stressed (red) 
+environments. The larger-dashed line in the middle connects the predictions for
+total plant biomass from a linear regression model using species and water 
+treatment as predictors. The smaller-dashed lines above and below the regression
+line represent the 95% confidence interval for the regression 
+
+**e) Results**
+
+The data analysis found that water treatment and species predicted total plant 
+biomass (linear regression, F(62,7) = 27.08, p < 0.001, α = 0.05, Multiple R^2^ 
+= 0.7535). Based on model predictions, holding species constant, water-watered 
+plants weighed 0.117 ± 0.024g more than drought-stressed plants (t = 2.225, 
+p < 0.001, α = 0.05). On average, *Grindelia camporum* specimens had the 
+greatest difference in weights from *Acmispon glaber*, the reference species, 
+of 0.313 ± 0.032g (t = 9.662, p < 0.001, α = 0.05) and *Penstemon 
+centranthifolius* the least, only weighing 0.05 ± 0.032g more (t = 1.543, 
+p = 0.128, α = 0.05), though this result has low significance.
+```{r}
+summary(model4)
+```
+
+
+# Problem 2. Affective visualization
+
+**a) Visualization Description**
+
+Since my data are sourced from observations of my breakfast habits, I could integrate the numerical data into a drawing of a bowl of oatmeal. Each day of the week could represent a different topping for the bowl. To illustrate the differences in breakfast durations across days, each day's topping would be sized according to whether its average duration is relatively longer or shorter. The day with the shortest duration could be represented by a seed or nut, while the longest by a strawberry or banana slice.
+
+**b) Sketch**
+
+Insert sketch
+
+**c) Draft**
+
+Insert draft
+
+**d) Artist Statement**
+
+Insert Artist Statement
+
+#Problem 3. Statistical critique
