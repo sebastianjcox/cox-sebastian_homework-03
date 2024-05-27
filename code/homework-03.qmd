@@ -8,11 +8,16 @@ format:
 execute: # for all code chunks
     warning: false # do not display warnings
     message: false # do not display messages
+editor: 
+  markdown: 
+    wrap: 72
 ---
 
-Forked repository: <https://github.com/sebastianjcox/cox-sebastian_homework-03>
+Forked repository:
+<https://github.com/sebastianjcox/cox-sebastian_homework-03>
 
 Reading in packages and cleaning data
+
 ```{r}
 
 # general use
@@ -61,6 +66,7 @@ drought_exp_clean <- drought_exp %>%
 ```
 
 Models
+
 ```{r}
 #Null model
 model0 <- lm(total_g ~ 1, 
@@ -81,6 +87,7 @@ model4 <- lm(total_g ~ water_treatment + species_name,
 ```
 
 Comparing Models
+
 ```{r}
 model.sel(model0,
           model1, 
@@ -88,22 +95,23 @@ model.sel(model0,
           model3,
           model4)
 ```
-*Model 4* has the lowest AIC. Now, we will examine the diagnostic plots to
-see if it is viable.
+
+*Model 4* has the lowest AIC. Now, we will examine the diagnostic plots
+to see if it is viable.
 
 ```{r}
 par(mfrow = c(2, 2)) #show the diagnostics as a 2x2 table
 plot(model4)
 
 ```
-The diagnostic plots look good: the residuals appear to be homoscedastic and
-normally distributed, and it appears that there are not any outliers that would
-impact the model predictions.
+
+The diagnostic plots look good: the residuals appear to be homoscedastic
+and normally distributed, and it appears that there are not any outliers
+that would impact the model predictions.
 
 # Problem 1. Multiple linear regression: model selection and construction
 
-**a) Comparing Models **
-
+**a) Comparing Models**
 
 | Model Number | Predictors                    |
 |--------------|-------------------------------|
@@ -115,24 +123,24 @@ impact the model predictions.
 
 : Model Numbers and Predictors {#tbl-letters}
 
-
-
 **b) Statistical Methods**
 
-To explore the influence of specific leaf area (mm^2^/g), water treatment 
-(well-watered or drought-stressed), and species on plant mass, I created and 
-compared multiple linear regression models. One model served as a baseline and 
-contained no predictors, one contained all three predictors, the the three 
-subsequent models contained each permutation of two of the predictors 
-(see **Table 1** for details). In order to decide upon the model that best 
-described how plant growth changes, I compared the Akaike Information Criterions
-(AICs), which takes into account the accuracy of the model's predictions and its
-complexity. The model with the lowest AIC was *Model 4*, which has species and 
-water treatment as predictors. To ensure that *Model 4* adhered to linear model
-assumptions, I analyzed Residual-Fitted and Scale-Location plots for 
-homoscedasticity of residuals, a QQ plot for normality of residuals, and a 
-Cook's distance plot for outliers. The diagnostic plots indicated that the model
-conformed to the assumptions and was suitable for analysis.
+To explore the influence of specific leaf area (mm^2^/g), water
+treatment (well-watered or drought-stressed), and species on plant mass,
+I created and compared multiple linear regression models. One model
+served as a baseline and contained no predictors, one contained all
+three predictors, the the three subsequent models contained each
+permutation of two of the predictors (see **Table 1** for details). In
+order to decide upon the model that best described how plant growth
+changes, I compared the Akaike Information Criterions (AICs), which
+takes into account the accuracy of the model's predictions and its
+complexity. The model with the lowest AIC was *Model 4*, which has
+species and water treatment as predictors. To ensure that *Model 4*
+adhered to linear model assumptions, I analyzed Residual-Fitted and
+Scale-Location plots for homoscedasticity of residuals, a QQ plot for
+normality of residuals, and a Cook's distance plot for outliers. The
+diagnostic plots indicated that the model conformed to the assumptions
+and was suitable for analysis.
 
 **c) Visualization**
 
@@ -174,38 +182,48 @@ ggplot(drought_exp_clean, #use clean data set
   
 
 ```
+
 **d) Caption**
 
-**Figure 1. Total plant biomass differs across water treatments.** Data from 
-"Can we condition native plants to increase drought tolerance and improve 
-restoration success?" (J. Valliere, et al., 2019). Points total plant 
-biomass (g) of plants grown in well watered (blue) and drought stressed (red) 
-environments. The larger-dashed line in the middle connects the predictions for
-total plant biomass from a linear regression model using species and water 
-treatment as predictors. The smaller-dashed lines above and below the regression
-line represent the 95% confidence interval for the regression 
+**Figure 1. Total plant biomass differs across water treatments.** Data
+from "Can we condition native plants to increase drought tolerance and
+improve restoration success?" (J. Valliere, et al., 2019). Points total
+plant biomass (g) of plants grown in well watered (blue) and drought
+stressed (red) environments. The larger-dashed line in the middle
+connects the predictions for total plant biomass from a linear
+regression model using species and water treatment as predictors. The
+smaller-dashed lines above and below the regression line represent the
+95% confidence interval for the regression
 
 **e) Results**
 
-The data analysis found that water treatment and species predicted total plant 
-biomass (linear regression, F(62,7) = 27.08, p < 0.001, α = 0.05, Multiple R^2^ 
-= 0.7535). Based on model predictions, holding species constant, water-watered 
-plants weighed 0.117 ± 0.024g more than drought-stressed plants (t = 2.225, 
-p < 0.001, α = 0.05). On average, *Grindelia camporum* specimens had the 
-greatest difference in weights from *Acmispon glaber*, the reference species, 
-of 0.313 ± 0.032g (t = 9.662, p < 0.001, α = 0.05) and *Penstemon 
-centranthifolius* the least, only weighing 0.05 ± 0.032g more (t = 1.543, 
-p = 0.128, α = 0.05), though this result has low significance.
+The data analysis found that water treatment and species predicted total
+plant biomass (linear regression, F(62,7) = 27.08, p \< 0.001, α = 0.05,
+Multiple R^2^ = 0.7535). Based on model predictions, holding species
+constant, water-watered plants weighed 0.117 ± 0.024g more than
+drought-stressed plants (t = 2.225, p \< 0.001, α = 0.05). On average,
+*Grindelia camporum* specimens had the greatest difference in weights
+from *Acmispon glaber*, the reference species, of 0.313 ± 0.032g (t =
+9.662, p \< 0.001, α = 0.05) and *Penstemon centranthifolius* the least,
+only weighing 0.05 ± 0.032g more (t = 1.543, p = 0.128, α = 0.05),
+though this result has low significance.
+
 ```{r}
 summary(model4)
 ```
-
 
 # Problem 2. Affective visualization
 
 **a) Visualization Description**
 
-Since my data are sourced from observations of my breakfast habits, I could integrate the numerical data into a drawing of a bowl of oatmeal. Each day of the week could represent a different topping for the bowl. To illustrate the differences in breakfast durations across days, each day's topping would be sized according to whether its average duration is relatively longer or shorter. The day with the shortest duration could be represented by a seed or nut, while the longest by a strawberry or banana slice.
+Since my data are sourced from observations of my breakfast habits, I
+could integrate the numerical data into a drawing of a bowl of oatmeal.
+Each day of the week could represent a different topping for the bowl.
+To illustrate the differences in breakfast durations across days, each
+day's topping would be sized according to whether its average duration
+is relatively longer or shorter. The day with the shortest duration
+could be represented by a seed or nut, while the longest by a strawberry
+or banana slice.
 
 **b) Sketch**
 
@@ -219,11 +237,29 @@ Insert draft
 
 Insert Artist Statement
 
-#Problem 3. Statistical critique
+# Problem 3. Statistical critique
 
 **a) Revisit and summarize**
 
-The authors used F-tests to examine the hypothesis the the distances that birds migrate are shortening over time due to climate change. The tables illustrate the different variables that they considered for their final model, indicating whether or not each variable was included.
+The authors used F-tests to examine the hypothesis the the distances
+that birds migrate are shortening over time due to climate change. The
+tables illustrate the different variables that they considered for their
+final model, indicating whether or not each variable was included.
 
-![](/Users/sebastiancox/Desktop/2023-24/S24/ENVS-193DS/git/cox-sebastian_homework-03/Table1.png)
-![](/Users/sebastiancox/Desktop/2023-24/S24/ENVS-193DS/git/cox-sebastian_homework-03/Table2.png)
+![](images/Table1.png) 
+
+![](images/Table2.png)
+
+**b) Visual Recommendations**
+
+The authors did not include a figure associated with the data presented in these
+tables, but it may have been helpful to visualize the differences in the 
+accuracy of the predictor variables. The authors could have included a bar graph
+with variables on the x-axis and p-values on the y-axis. The variables could be 
+sorted in decreasing order of p-value, with the colors of each bar along a
+gradient from lighter to darker. Since there is a large range of p-values, there
+should be a jump in the y-axis from about 0.1 to 0.0001 to illustrate each 
+variable. Presenting the table data in this format would make it easier for 
+readers to identify which variables are the strongest predictors, and making
+smaller p-values darker would provide a visual indicator that the associated 
+variables are 'weightier' and have a greater effect on the response variable.
