@@ -150,6 +150,7 @@ model_preds <- ggpredict(model4,
                          terms = c("water_treatment", 
                                    "species_name"))
 
+
 ggplot(drought_exp_clean, #use clean data set
        aes(x = water_treatment, #set axes
            y = total_g,
@@ -158,28 +159,31 @@ ggplot(drought_exp_clean, #use clean data set
   geom_point( #display data as points
              size = 1,
              alpha = 0.2) + #make the points transparent
-  geom_line(data = model_preds, #use model predictions
-            aes(x = x, y = predicted, group = group), #plot regression line
-            color = "aquamarine4" , #change color
-            size = 1,
-            linetype = "dotted") + #make line dotted
-  geom_line(data = model_preds, 
-            aes(x = x, y = conf.low, group = group), #plot low end of confidence interval
-            color = "darkblue" ,
-            size = 0.5,
-            linetype = "dotted") +
-  geom_line(data = model_preds, 
-            aes(x = x, y = conf.high, group = group), #plot high end of confidence interval
-            size = 0.5,
-             color = "darkblue",
-            linetype = "dotted") +
-  theme(axis.text.x = element_text(angle = 60, hjust = 1)) + #rotate x-axis lables
+  geom_point(data = model_preds, #use model predictions
+            aes(x = x, 
+                y = predicted, 
+                group = group,
+                color = x), #plot regression line
+            size = 4,
+            shape = 18) +
+  geom_errorbar(data = model_preds, # Add error bars for confidence intervals
+                aes(x = x, #use water treatment as x
+                    y = predicted, #use total biomass as y
+                    ymin = conf.low, #set bounds according to confidence interval
+                    ymax = conf.high, 
+                    group = group, #group by species
+                    color = x), #color by water treatment
+                width = 0.2,
+                size = 0.6,
+                ) +
+  theme_minimal() +  #apply theme
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) + #rotate x-axis label
   facet_wrap(~group) + #facet by species
   labs(x = "Water Treatment", #label graph
        y = "Total Biomass (g)",
        title = "Total Plant Biomass Differs Across Water Treatments")+
-  theme(legend.position = "none") #remove legend
-  
+  theme(legend.position = "none") + #remove legend
+  scale_color_manual(values = c("#228B36", "#C4A500")) #change colors
 
 ```
 
@@ -198,7 +202,7 @@ smaller-dashed lines above and below the regression line represent the
 **e) Results**
 
 The data analysis found that water treatment and species predicted total
-plant biomass (linear regression, F(62,7) = 27.08, p \< 0.001, α = 0.05,
+plant biomass (linear regression, F(7,62) = 27.08, p \< 0.001, α = 0.05,
 Multiple R^2^ = 0.7535). Based on model predictions, holding species
 constant, water-watered plants weighed 0.117 ± 0.024g more than
 drought-stressed plants (t = 2.225, p \< 0.001, α = 0.05). On average,
