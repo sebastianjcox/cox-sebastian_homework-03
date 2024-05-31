@@ -113,13 +113,13 @@ that would impact the model predictions.
 
 **a) Comparing Models**
 
-| Model Number | Predictors                    |
-|--------------|-------------------------------|
-| 0            | None                          |
-| 1            | SLA, Species, Water Treatment |
-| 2            | SLA, Water Treatment          |
-| 3            | SLA, Species                  |
-| 4            | Species, Water Treatment      |
+| Model Number | Predictors                    | AIC    | Delta |
+|--------------|-------------------------------|--------|-------|
+| 0            | None                          | -75    | 81.22 |
+| 1            | SLA, Species, Water Treatment | -153.8 | 2.44  |
+| 2            | SLA, Water Treatment          | -95.8  | 60.37 |
+| 3            | SLA, Species                  | -124.1 | 32.12 |
+| 4            | Species, Water Treatment      | -156.2 | 0     |
 
 : Model Numbers and Predictors {#tbl-letters}
 
@@ -128,19 +128,19 @@ that would impact the model predictions.
 To explore the influence of specific leaf area (mm^2^/g), water
 treatment (well-watered or drought-stressed), and species on plant mass,
 I created and compared multiple linear regression models. One model
-served as a baseline and contained no predictors, one contained all
-three predictors, the the three subsequent models contained each
-permutation of two of the predictors (see **Table 1** for details). In
-order to decide upon the model that best described how plant growth
-changes, I compared the Akaike Information Criterions (AICs), which
-takes into account the accuracy of the model's predictions and its
-complexity. The model with the lowest AIC was *Model 4*, which has
-species and water treatment as predictors. To ensure that *Model 4*
-adhered to linear model assumptions, I analyzed Residual-Fitted and
-Scale-Location plots for homoscedasticity of residuals, a QQ plot for
-normality of residuals, and a Cook's distance plot for outliers. The
-diagnostic plots indicated that the model conformed to the assumptions
-and was suitable for analysis.
+served as a baseline and contained no predictors (null model), one
+contained all three predictors (saturated model), the the three
+subsequent models contained each permutation of two of the predictors
+(see **Table 1** for details). In order to decide upon the model that
+best described how plant growth changes, I compared the Akaike
+Information Criterions (AICs), which takes into account the accuracy of
+the model's predictions and its complexity. The model with the lowest
+AIC was *Model 4*, which has species and water treatment as predictors.
+To ensure that *Model 4* adhered to linear model assumptions, I analyzed
+Residual-Fitted and Scale-Location plots for homoscedasticity of
+residuals, a QQ plot for normality of residuals, and a Cook's distance
+plot for outliers. The diagnostic plots indicated that the model
+conformed to the assumptions and was suitable for analysis.
 
 **c) Visualization**
 
@@ -195,7 +195,7 @@ improve restoration success?" (J. Valliere, et al., 2019). Points total
 plant biomass (g) of plants grown in well watered (green) and drought
 stressed (tan) environments. The diamonds represent model predictions
 for the average biomass of each species in each water treatment, and the
-error bars represent a 95% confidence interval about the
+error bars represent a 95% confidence interval about the predictions.
 
 **e) Results**
 
@@ -237,7 +237,18 @@ or banana slice.
 
 **d) Artist Statement**
 
-My figure visualizes the duration of my breakfasts each morning. I eat oatmeal to start my day, so the image depicts a bowl of oatmeal, with a different topping to represent each day of the week, sized according to the average duration for me to finish my breakfast on that day. I was inspired by Jill Pelto's paintings, specifically the way that they were able to depict statistical data in a subtle way; her pieces can be viewed first as a work of art, then as a form of depicting data. I created this digital image on an iPad using an app called "Goodnotes." I was new to both the app and the process of drawing with a stylus, so I spent a long time using Google and trial and error to figure out what the app was capable of, then began drawing using shape templates when appropriate and freehand shading for the remainder.
+My figure visualizes the duration of my breakfasts each morning. I eat
+oatmeal to start my day, so the image depicts a bowl of oatmeal with a
+different topping to represent each day of the week, sized according to
+the average duration for me to finish my breakfast on that day. I was
+inspired by Jill Pelto's paintings, specifically the way that they were
+able to depict statistical data in a subtle way; her pieces can be
+viewed first as a work of art, then as a form of depicting data. I
+created this digital image on an iPad using an app called "Goodnotes." I
+was new to both the app and the process of drawing with a stylus, so I
+spent a long time using Google and trial and error to figure out what
+the app was capable of, then began drawing using shape templates when
+appropriate and freehand shading for the remainder.
 
 # Problem 3. Statistical critique
 
@@ -252,32 +263,37 @@ final model, indicating whether or not each variable was included.
 
 ![](images/Table2.png)
 
-**b) Visual Clarity** Table 1 is exceptionally clear: the variables are
-self-explanatory, the F-statistic and associated p-value for each is
-given, justifying the inclusion of the variable in the model. Table 2
-contains much more information and is less clear on its own. It includes
-the same metrics as Table 1 for many more variables and separates those
-included and not included in the final model. For those included, it
-provides model estimates and standard errors. However, some of the
-variable names are unclear and require an additional table that provides
-their meanings.
+**b) Visual Clarity**
 
-**c) Aesthetic Clarity** Table 1 is clean, uncluttered, and direct.
-Table 2 contains more information so it inherently takes longer to
-analyze, but it could also be improved with stylistic choices.
-Displaying the "included" or "excluded" text in bold would make the
-separation between variable categories more apparent, and the variables
-could have been sorted by descending p-value to indicate which were most
-significant. Furthermore, the values in the 'Estimate' column are quite
-far from the variable names associated with them, so it is difficult to
-immediately make the connection between the numbers and the associated
-variable.
+Table 1 is exceptionally clear: the variables are self-explanatory, the
+F-statistic and associated p-value for each is given, justifying the
+inclusion of the variable in the model. Table 2 contains much more
+information and is less clear on its own. It includes the same metrics
+as Table 1 for many more variables and separates those included and not
+included in the final model. For those included, it provides model
+estimates and standard errors. However, some of the variable names are
+unclear and require an additional table that provides their meanings to
+be fully understood.
 
-**d) Recommendations** The authors did not include a figure associated
-with the data presented in these tables, but it may have been helpful to
-visualize the differences in the accuracy of the predictor variables.
-The authors could have included a bar graph with variables on the x-axis
-and p-values on the y-axis. The variables could be sorted in decreasing
+**c) Aesthetic Clarity**
+
+Table 1 is clean, uncluttered, and direct. Table 2 contains more
+information so it inherently takes longer to analyze, but it could also
+be improved with stylistic choices. Displaying the "included" or
+"excluded" text in bold would make the separation between variable
+categories more apparent, and the variables could have been sorted by
+descending p-value to indicate which were most significant. Furthermore,
+the values in the 'Estimate' column are quite far from the variable
+names associated with them, so it is difficult to immediately make the
+connection between the numbers and the associated variable.
+
+**d) Recommendations**
+
+The authors did not include a figure associated with the data presented
+in these tables, but it may have been helpful to visualize the
+differences in the accuracy of the predictor variables. The authors
+could have included a bar graph with variables on the x-axis and
+p-values on the y-axis. The variables could be sorted in decreasing
 order of p-value, with the colors of each bar along a gradient from
 lighter to darker. Since there is a large range of p-values, there
 should be a jump in the y-axis from about 0.1 to 0.0001 to illustrate
