@@ -233,11 +233,11 @@ or banana slice.
 
 **c) Draft**
 
-Insert draft
+![](images/draft.jpg)
 
 **d) Artist Statement**
 
-Insert Artist Statement
+My figure visualizes the duration of my breakfasts each morning. I eat oatmeal to start my day, so the image depicts a bowl of oatmeal, with a different topping to represent each day of the week, sized according to the average duration for me to finish my breakfast on that day. I was inspired by Jill Pelto's paintings, specifically the way that they were able to depict statistical data in a subtle way; her pieces can be viewed first as a work of art, then as a form of depicting data. I created this digital image on an iPad using an app called "Goodnotes." I was new to both the app and the process of drawing with a stylus, so I spent a long time using Google and trial and error to figure out what the app was capable of, then began drawing using shape templates when appropriate and freehand shading for the remainder.
 
 # Problem 3. Statistical critique
 
@@ -252,32 +252,32 @@ final model, indicating whether or not each variable was included.
 
 ![](images/Table2.png)
 
-**b) Visual Clarity** 
-Table 1 is exceptionally clear: the variables are self-explanatory, 
-the F-statistic and associated p-value for each is given, justifying the
-inclusion of the variable in the model. Table 2 contains much more information 
-and is less clear on its own. It includes the same metrics as Table 1 for many 
-more variables and separates those included and not included in the final model.
-For those included, it provides model estimates and standard errors. However, 
-some of the variable names are unclear and require an additional table that 
-provides their meanings.
+**b) Visual Clarity** Table 1 is exceptionally clear: the variables are
+self-explanatory, the F-statistic and associated p-value for each is
+given, justifying the inclusion of the variable in the model. Table 2
+contains much more information and is less clear on its own. It includes
+the same metrics as Table 1 for many more variables and separates those
+included and not included in the final model. For those included, it
+provides model estimates and standard errors. However, some of the
+variable names are unclear and require an additional table that provides
+their meanings.
 
-**c) Aesthetic Clarity** 
-Table 1 is clean, uncluttered, and direct. Table 2 contains more information so 
-it inherently takes longer to analyze, but it could also be improved with 
-stylistic choices. Displaying the "included" or "excluded" text in bold would 
-make the separation between variable categories more apparent, and the variables
-could have been sorted by descending p-value to indicate which were most 
-significant. Furthermore, the values in the 'Estimate' column are quite far 
-from the variable names associated with them, so it is difficult to immediately
-make the connection between the numbers and the associated variable.
+**c) Aesthetic Clarity** Table 1 is clean, uncluttered, and direct.
+Table 2 contains more information so it inherently takes longer to
+analyze, but it could also be improved with stylistic choices.
+Displaying the "included" or "excluded" text in bold would make the
+separation between variable categories more apparent, and the variables
+could have been sorted by descending p-value to indicate which were most
+significant. Furthermore, the values in the 'Estimate' column are quite
+far from the variable names associated with them, so it is difficult to
+immediately make the connection between the numbers and the associated
+variable.
 
-**d) Recommendations**
-The authors did not include a figure associated with the data presented
-in these tables, but it may have been helpful to visualize the
-differences in the accuracy of the predictor variables. The authors
-could have included a bar graph with variables on the x-axis and
-p-values on the y-axis. The variables could be sorted in decreasing
+**d) Recommendations** The authors did not include a figure associated
+with the data presented in these tables, but it may have been helpful to
+visualize the differences in the accuracy of the predictor variables.
+The authors could have included a bar graph with variables on the x-axis
+and p-values on the y-axis. The variables could be sorted in decreasing
 order of p-value, with the colors of each bar along a gradient from
 lighter to darker. Since there is a large range of p-values, there
 should be a jump in the y-axis from about 0.1 to 0.0001 to illustrate

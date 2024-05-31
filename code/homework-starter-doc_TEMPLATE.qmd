@@ -6,19 +6,29 @@ format:
 execute: # for all code chunks
     warning: false # do not display warnings
     message: false # do not display messages
+editor: 
+  markdown: 
+    wrap: 72
 ---
 
-**WARNING:** this document provides the foundation for your homework 3, but you will need to create your own neat, organized document to render for your homework submission. Create a new document for your homework in the `code` folder of this repository.   
+**WARNING:** this document provides the foundation for your homework 3,
+but you will need to create your own neat, organized document to render
+for your homework submission. Create a new document for your homework in
+the `code` folder of this repository.
 
-**You will not need all the information in this document to do your homework; IT IS YOUR JOB TO EDIT THE INFORMATION IN YOUR HOMEWORK DOCUMENT TO ONLY INCLUDE WHAT IS NECESSARY.**    
+**You will not need all the information in this document to do your
+homework; IT IS YOUR JOB TO EDIT THE INFORMATION IN YOUR HOMEWORK
+DOCUMENT TO ONLY INCLUDE WHAT IS NECESSARY.**
 
-**Relevant definitions:**  
+**Relevant definitions:**
 
-specific leaf area (SLA, units: mm^2^/g): surface area of a leaf divided by its dry mass, represents life strategy (high SLA = large surface area and low mass = "fast" species)  
+specific leaf area (SLA, units: mm^2^/g): surface area of a leaf divided
+by its dry mass, represents life strategy (high SLA = large surface area
+and low mass = "fast" species)
 
-root mass (units: g): mass of root tissue  
+root mass (units: g): mass of root tissue
 
-shoot mass (units: g): mass of aboveground tissue  
+shoot mass (units: g): mass of aboveground tissue
 
 # Set up
 
@@ -79,7 +89,7 @@ drought_exp_clean <- drought_exp %>%
 
 # Visualizing
 
-## correlations 
+## correlations
 
 ```{r}
 ggpairs(drought_exp_clean, # data frame
@@ -93,25 +103,26 @@ ggpairs(drought_exp_clean, # data frame
   theme(panel.grid = element_blank()) # getting rid of gridlines
 ```
 
-Choose 3 pairs of variables to compare. Make notes of those comparisons below.    
+Choose 3 pairs of variables to compare. Make notes of those comparisons
+below.
 
-**insert comparison 1 here**  
-Leaf Dry Weight & Specific Leaf Area: There is no correlation
-(Pearson's r = 0.033) between the two variables.
-**insert comparison 2 here**  
-Root Weight and Total Weight: There is a strong positive correlation (Pearson's
-r = 0.858) between the variables.
-**insert comparison 3 here**
-Shoot Weight and Root Weight: There is a moderately strong positive correlation 
-(Pearson's r = 0.553) between the weights.
+**insert comparison 1 here**\
+Leaf Dry Weight & Specific Leaf Area: There is no correlation (Pearson's
+r = 0.033) between the two variables. **insert comparison 2 here**\
+Root Weight and Total Weight: There is a strong positive correlation
+(Pearson's r = 0.858) between the variables. **insert comparison 3
+here** Shoot Weight and Root Weight: There is a moderately strong
+positive correlation (Pearson's r = 0.553) between the weights.
 
-## Preliminary visualizations  
+## Preliminary visualizations
 
-If you aren't familiar with each plant species, google them!  
+If you aren't familiar with each plant species, google them!
 
-Then go exploring! Visually.  
+Then go exploring! Visually.
 
-In this scenario, we're interested in how three variables affect total biomass: species (categorical), water treatment (categorical), specific leaf area (SLA, numeric).  
+In this scenario, we're interested in how three variables affect total
+biomass: species (categorical), water treatment (categorical), specific
+leaf area (SLA, numeric).
 
 **Note:** it is totally ok (and encouraged) to explore these separately!
 
@@ -127,11 +138,10 @@ ggplot(data = drought_exp_clean, # data frame
               height = 0) # not jittering points up and down
 ```
 
-**response here**
-Plants with larger biomass tend to have more range in biomass, whereas plants 
-with smaller biomass have less range. Grindelia camporum has the highest 
-biomass and Acmispon glaber has the lowest biomass
-### how does total biomass differ between water treatments?
+**response here** Plants with larger biomass tend to have more range in
+biomass, whereas plants with smaller biomass have less range. Grindelia
+camporum has the highest biomass and Acmispon glaber has the lowest
+biomass \### how does total biomass differ between water treatments?
 
 ```{r}
 ggplot(data = drought_exp_clean, # data frame
@@ -141,10 +151,10 @@ ggplot(data = drought_exp_clean, # data frame
               height = 0) # not jittering points up and down
 ```
 
-**response here**
-Well-watered plants tend to have a higher biomass than drought-stressed ones.
-This is consistent with biological knowledge on how plants use water to grow.
-### how does specific leaf area (SLA) influence total biomass?
+**response here** Well-watered plants tend to have a higher biomass than
+drought-stressed ones. This is consistent with biological knowledge on
+how plants use water to grow. \### how does specific leaf area (SLA)
+influence total biomass?
 
 ```{r}
 ggplot(data = drought_exp_clean, # data frame
@@ -153,30 +163,30 @@ ggplot(data = drought_exp_clean, # data frame
   geom_point() # scatterplot
 ```
 
-**response here**
-Specimens with greater specific leaf area tend to have greater total. There 
-appears to be a moderate positive correlation between the two.
-biomass.
-# Model construction
+**response here** Specimens with greater specific leaf area tend to have
+greater total. There appears to be a moderate positive correlation
+between the two. biomass. \# Model construction
 
-What is the null model?  
+What is the null model?
 
-0. **Total biomass is not predicted by any of the predictors.**
+0.  **Total biomass is not predicted by any of the predictors.**
 
-What is the saturated model?  
+What is the saturated model?
 
-1. **Total biomass predicted by sla, water treatment, and species.**
+1.  **Total biomass predicted by sla, water treatment, and species.**
 
-In class we are going to try two more models:  
+In class we are going to try two more models:
 
-2.  **total biomass as a function of SLA and water treatment**  
-3.  **total biomass as a function of SLA and species**  
+2.  **total biomass as a function of SLA and water treatment**\
+3.  **total biomass as a function of SLA and species**
 
-For homework, you will construct one more model:  
+For homework, you will construct one more model:
 
-4. **total biomass as a function of water treatment and species**  
+4.  **total biomass as a function of water treatment and species**
 
-You will then compare all 5 models to determine which best describes total biomass. **For your homework, you will need to create a table summarizing the structure of these models.**
+You will then compare all 5 models to determine which best describes
+total biomass. **For your homework, you will need to create a table
+summarizing the structure of these models.**
 
 ## 0. Null model
 
@@ -196,7 +206,8 @@ par(mfrow = c(2, 2))
 plot(model1)
 # you might get a warning when you run this code - that is ok!
 ```
-Diagnostics for saturated model look good. 
+
+Diagnostics for saturated model look good.
 
 ## 2. total biomass as a function of SLA and water treatment
 
@@ -233,8 +244,9 @@ model.sel(model0,
           model3)
 ```
 
-Out of the four models we have tried, the best model is the one that includes 
-**specific leaf area, species, and water treatment (all three predictors).**
+Out of the four models we have tried, the best model is the one that
+includes **specific leaf area, species, and water treatment (all three
+predictors).**
 
 Note that this may change once you fit and compare the other model!
 
@@ -244,43 +256,48 @@ Note that this may change once you fit and compare the other model!
 summary(model1)
 ```
 
-What are the reference levels?  
+What are the reference levels?
 
-- reference for `water_treatment`  
-- reference for `species_name`  
+-   reference for `water_treatment`\
+-   reference for `species_name`
 
-**reference for water_treatment:** **Drought Stressed**  
-**reference for species_name:** **Acmispon glaber**  
+**reference for water_treatment:** **Drought Stressed**\
+**reference for species_name:** **Acmispon glaber**
 
-Interpret the model estimates for the:  
+Interpret the model estimates for the:
 
-- intercept: **mass of Acmispon glaber in drought-stressed treatment when SLA=0**  
-- SLA slope: **across drought treatments, and species, with each 1 unit**
-**increase in SLA (mm^2/dry mass of leaf), we expect an increase in total mass**
-**of -0.00025 which means with the estimate and standard error there is NO**
-**EFFECT OF SLA ON TOTAL MASS**  
-- well watered estimate: **Across species and SLA, well-watered plants tend to**
-**be 0.12 ± 0.02g heavier than drought-stressed plants**    
-- Lotus scoparius estimate: **insert response here**    
-- Stipa pulchra estimate: **insert response here**    
+-   intercept: **mass of Acmispon glaber in drought-stressed treatment
+    when SLA=0**\
+-   SLA slope: **across drought treatments, and species, with each 1
+    unit** **increase in SLA (mm\^2/dry mass of leaf), we expect an
+    increase in total mass** **of -0.00025 which means with the estimate
+    and standard error there is NO** **EFFECT OF SLA ON TOTAL MASS**\
+-   well watered estimate: **Across species and SLA, well-watered plants
+    tend to** **be 0.12 ± 0.02g heavier than drought-stressed plants**\
+-   Lotus scoparius estimate: **insert response here**\
+-   Stipa pulchra estimate: **insert response here**
 
 # Model predictions
 
-**Note:** only plot terms in the model you select - if your doesn't include one of these terms, take it out and adjust the plotting code accordingly!
+**Note:** only plot terms in the model you select - if your doesn't
+include one of these terms, take it out and adjust the plotting code
+accordingly!
 
 ```{r}
-model_preds <- ggpredict(model1, 
-                         terms = c("sla",
+#storing model predictions
+model_preds <- ggpredict(model4, 
+                         terms = c(
                                    "water_treatment", 
                                    "species_name"))
 
-# use View(model_preds) to see the predictions as a data frame
-# use model_preds to see the predictions formatted nicely
 ```
 
 # Visualization
 
-**Note:** this is the quick way to visualize model predictions. For your homework, you may find it easier to plot things yourself (i.e. not using the `plot()` functionality within `ggeffects`). See lecture for an example of how to do this.  
+**Note:** this is the quick way to visualize model predictions. For your
+homework, you may find it easier to plot things yourself (i.e. not using
+the `plot()` functionality within `ggeffects`). See lecture for an
+example of how to do this.
 
 ```{r}
 # plot function within ggeffects
@@ -298,9 +315,8 @@ The "more customizable" way:
 ```{r}
 # creating new data frame of model predictions for plotting
 model_preds_for_plotting <- model_preds %>% 
-  rename(sla = x, # renaming columns to make this easier to use
-         water_treatment = group,
-         species_name = facet)
+  rename(water_treatment = x, # renaming columns to make this easier to use
+         species_name = group)
 
 # use View(model_preds_for_plotting) 
 # to compare this to the original model_preds data frame
@@ -330,7 +346,6 @@ ggplot() +
   facet_wrap(~species_name) 
 ```
 
-
 # Making a table
 
 ```{r}
@@ -352,7 +367,10 @@ modelsummary::modelsummary( # this function takes a list of models
 
 ```
 
-**Note 1: notice all the information at the bottom of the `modelsummary` output - if you only needed the AIC and delta AIC, what could you do? see package documentation for help**
+**Note 1: notice all the information at the bottom of the `modelsummary`
+output - if you only needed the AIC and delta AIC, what could you do?
+see package documentation for help**
 
-**Note 2: you will always have to report the F-statistic, degrees of freedom, test statistic, p-value, ⍺, and R^2^. Whether or not this information is in a table is up to you.**
-
+**Note 2: you will always have to report the F-statistic, degrees of
+freedom, test statistic, p-value, ⍺, and R^2^. Whether or not this
+information is in a table is up to you.**
