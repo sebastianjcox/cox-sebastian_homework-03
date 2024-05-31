@@ -265,6 +265,7 @@ final model, indicating whether or not each variable was included.
 
 **b) Visual Clarity**
 
+
 Table 1 is exceptionally clear: the variables are self-explanatory, the
 F-statistic and associated p-value for each is given, justifying the
 inclusion of the variable in the model. Table 2 contains much more
@@ -277,6 +278,7 @@ be fully understood.
 
 **c) Aesthetic Clarity**
 
+
 Table 1 is clean, uncluttered, and direct. Table 2 contains more
 information so it inherently takes longer to analyze, but it could also
 be improved with stylistic choices. Displaying the "included" or
@@ -288,6 +290,7 @@ names associated with them, so it is difficult to immediately make the
 connection between the numbers and the associated variable.
 
 **d) Recommendations**
+
 
 The authors did not include a figure associated with the data presented
 in these tables, but it may have been helpful to visualize the
