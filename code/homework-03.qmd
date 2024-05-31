@@ -192,12 +192,10 @@ ggplot(drought_exp_clean, #use clean data set
 **Figure 1. Total plant biomass differs across water treatments.** Data
 from "Can we condition native plants to increase drought tolerance and
 improve restoration success?" (J. Valliere, et al., 2019). Points total
-plant biomass (g) of plants grown in well watered (blue) and drought
-stressed (red) environments. The larger-dashed line in the middle
-connects the predictions for total plant biomass from a linear
-regression model using species and water treatment as predictors. The
-smaller-dashed lines above and below the regression line represent the
-95% confidence interval for the regression
+plant biomass (g) of plants grown in well watered (green) and drought
+stressed (tan) environments. The diamonds represent model predictions
+for the average biomass of each species in each water treatment, and the
+error bars represent a 95% confidence interval about the
 
 **e) Results**
 
@@ -231,7 +229,7 @@ or banana slice.
 
 **b) Sketch**
 
-Insert sketch
+![](images/sketch.JPG){width="625"}
 
 **c) Draft**
 
@@ -250,20 +248,41 @@ that birds migrate are shortening over time due to climate change. The
 tables illustrate the different variables that they considered for their
 final model, indicating whether or not each variable was included.
 
-![](images/Table1.png) 
+![](images/Table1.png)
 
 ![](images/Table2.png)
 
-**b) Visual Recommendations**
+**b) Visual Clarity** 
+Table 1 is exceptionally clear: the variables are self-explanatory, 
+the F-statistic and associated p-value for each is given, justifying the
+inclusion of the variable in the model. Table 2 contains much more information 
+and is less clear on its own. It includes the same metrics as Table 1 for many 
+more variables and separates those included and not included in the final model.
+For those included, it provides model estimates and standard errors. However, 
+some of the variable names are unclear and require an additional table that 
+provides their meanings.
 
-The authors did not include a figure associated with the data presented in these
-tables, but it may have been helpful to visualize the differences in the 
-accuracy of the predictor variables. The authors could have included a bar graph
-with variables on the x-axis and p-values on the y-axis. The variables could be 
-sorted in decreasing order of p-value, with the colors of each bar along a
-gradient from lighter to darker. Since there is a large range of p-values, there
-should be a jump in the y-axis from about 0.1 to 0.0001 to illustrate each 
-variable. Presenting the table data in this format would make it easier for 
-readers to identify which variables are the strongest predictors, and making
-smaller p-values darker would provide a visual indicator that the associated 
-variables are 'weightier' and have a greater effect on the response variable.
+**c) Aesthetic Clarity** 
+Table 1 is clean, uncluttered, and direct. Table 2 contains more information so 
+it inherently takes longer to analyze, but it could also be improved with 
+stylistic choices. Displaying the "included" or "excluded" text in bold would 
+make the separation between variable categories more apparent, and the variables
+could have been sorted by descending p-value to indicate which were most 
+significant. Furthermore, the values in the 'Estimate' column are quite far 
+from the variable names associated with them, so it is difficult to immediately
+make the connection between the numbers and the associated variable.
+
+**d) Recommendations**
+The authors did not include a figure associated with the data presented
+in these tables, but it may have been helpful to visualize the
+differences in the accuracy of the predictor variables. The authors
+could have included a bar graph with variables on the x-axis and
+p-values on the y-axis. The variables could be sorted in decreasing
+order of p-value, with the colors of each bar along a gradient from
+lighter to darker. Since there is a large range of p-values, there
+should be a jump in the y-axis from about 0.1 to 0.0001 to illustrate
+each variable. Presenting the table data in this format would make it
+easier for readers to identify which variables are the strongest
+predictors, and making smaller p-values darker would provide a visual
+indicator that the associated variables are 'weightier' and have a
+greater effect on the response variable.

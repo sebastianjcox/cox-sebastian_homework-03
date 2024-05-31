@@ -267,35 +267,40 @@ Table&nbsp;1: Model Numbers and Predictors
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">"water_treatment"</span>, </span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"species_name"</span>))</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(drought_exp_clean, <span class="co">#use clean data set</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> water_treatment, <span class="co">#set axes</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> total_g,</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> water_treatment <span class="co">#color by water treatment</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>           )) <span class="sc">+</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>( <span class="co">#display data as points</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">1</span>,</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span> <span class="co">#make the points transparent</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> model_preds, <span class="co">#use model predictions</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> predicted, <span class="at">group =</span> group), <span class="co">#plot regression line</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"aquamarine4"</span> , <span class="co">#change color</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">1</span>,</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">linetype =</span> <span class="st">"dotted"</span>) <span class="sc">+</span> <span class="co">#make line dotted</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> model_preds, </span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> conf.low, <span class="at">group =</span> group), <span class="co">#plot low end of confidence interval</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"darkblue"</span> ,</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>            <span class="at">size =</span> <span class="fl">0.5</span>,</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>            <span class="at">linetype =</span> <span class="st">"dotted"</span>) <span class="sc">+</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> model_preds, </span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> conf.high, <span class="at">group =</span> group), <span class="co">#plot high end of confidence interval</span></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>            <span class="at">size =</span> <span class="fl">0.5</span>,</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">"darkblue"</span>,</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>            <span class="at">linetype =</span> <span class="st">"dotted"</span>) <span class="sc">+</span></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">60</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span> <span class="co">#rotate x-axis lables</span></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>group) <span class="sc">+</span> <span class="co">#facet by species</span></span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Water Treatment"</span>, <span class="co">#label graph</span></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total Biomass (g)"</span>,</span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Total Plant Biomass Differs Across Water Treatments"</span>)<span class="sc">+</span></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="co">#remove legend</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(drought_exp_clean, <span class="co">#use clean data set</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> water_treatment, <span class="co">#set axes</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> total_g,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> water_treatment <span class="co">#color by water treatment</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>           )) <span class="sc">+</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>( <span class="co">#display data as points</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">1</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span> <span class="co">#make the points transparent</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> model_preds, <span class="co">#use model predictions</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> x, </span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> predicted, </span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>                <span class="at">group =</span> group,</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> x), <span class="co">#plot regression line</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">4</span>,</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">shape =</span> <span class="dv">18</span>) <span class="sc">+</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">data =</span> model_preds, <span class="co"># Add error bars for confidence intervals</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>                <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="co">#use water treatment as x</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>                    <span class="at">y =</span> predicted, <span class="co">#use total biomass as y</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymin =</span> conf.low, <span class="co">#set bounds according to confidence interval</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> conf.high, </span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group =</span> group, <span class="co">#group by species</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>                    <span class="at">color =</span> x), <span class="co">#color by water treatment</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.2</span>,</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>                <span class="at">size =</span> <span class="fl">0.6</span>,</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>                ) <span class="sc">+</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span>  <span class="co">#apply theme</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">60</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span> <span class="co">#rotate x-axis label</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>group) <span class="sc">+</span> <span class="co">#facet by species</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Water Treatment"</span>, <span class="co">#label graph</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total Biomass (g)"</span>,</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Total Plant Biomass Differs Across Water Treatments"</span>)<span class="sc">+</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span> <span class="co">#remove legend</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#228B36"</span>, <span class="st">"#C4A500"</span>)) <span class="co">#change colors</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -305,9 +310,9 @@ Table&nbsp;1: Model Numbers and Predictors
 </div>
 </div>
 <p><strong>d) Caption</strong></p>
-<p><strong>Figure 1. Total plant biomass differs across water treatments.</strong> Data from “Can we condition native plants to increase drought tolerance and improve restoration success?” (J. Valliere, et al., 2019). Points total plant biomass (g) of plants grown in well watered (blue) and drought stressed (red) environments. The larger-dashed line in the middle connects the predictions for total plant biomass from a linear regression model using species and water treatment as predictors. The smaller-dashed lines above and below the regression line represent the 95% confidence interval for the regression</p>
+<p><strong>Figure 1. Total plant biomass differs across water treatments.</strong> Data from “Can we condition native plants to increase drought tolerance and improve restoration success?” (J. Valliere, et al., 2019). Points total plant biomass (g) of plants grown in well watered (green) and drought stressed (tan) environments. The diamonds represent model predictions for the average biomass of each species in each water treatment, and the error bars represent a 95% confidence interval about the</p>
 <p><strong>e) Results</strong></p>
-<p>The data analysis found that water treatment and species predicted total plant biomass (linear regression, F(62,7) = 27.08, p &lt; 0.001, α = 0.05, Multiple R<sup>2</sup> = 0.7535). Based on model predictions, holding species constant, water-watered plants weighed 0.117 ± 0.024g more than drought-stressed plants (t = 2.225, p &lt; 0.001, α = 0.05). On average, <em>Grindelia camporum</em> specimens had the greatest difference in weights from <em>Acmispon glaber</em>, the reference species, of 0.313 ± 0.032g (t = 9.662, p &lt; 0.001, α = 0.05) and <em>Penstemon centranthifolius</em> the least, only weighing 0.05 ± 0.032g more (t = 1.543, p = 0.128, α = 0.05), though this result has low significance.</p>
+<p>The data analysis found that water treatment and species predicted total plant biomass (linear regression, F(7,62) = 27.08, p &lt; 0.001, α = 0.05, Multiple R<sup>2</sup> = 0.7535). Based on model predictions, holding species constant, water-watered plants weighed 0.117 ± 0.024g more than drought-stressed plants (t = 2.225, p &lt; 0.001, α = 0.05). On average, <em>Grindelia camporum</em> specimens had the greatest difference in weights from <em>Acmispon glaber</em>, the reference species, of 0.313 ± 0.032g (t = 9.662, p &lt; 0.001, α = 0.05) and <em>Penstemon centranthifolius</em> the least, only weighing 0.05 ± 0.032g more (t = 1.543, p = 0.128, α = 0.05), though this result has low significance.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -343,7 +348,7 @@ F-statistic: 27.08 on 7 and 62 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p><strong>a) Visualization Description</strong></p>
 <p>Since my data are sourced from observations of my breakfast habits, I could integrate the numerical data into a drawing of a bowl of oatmeal. Each day of the week could represent a different topping for the bowl. To illustrate the differences in breakfast durations across days, each day’s topping would be sized according to whether its average duration is relatively longer or shorter. The day with the shortest duration could be represented by a seed or nut, while the longest by a strawberry or banana slice.</p>
 <p><strong>b) Sketch</strong></p>
-<p>Insert sketch</p>
+<p><img src="images/sketch.JPG" class="img-fluid" width="625"></p>
 <p><strong>c) Draft</strong></p>
 <p>Insert draft</p>
 <p><strong>d) Artist Statement</strong></p>
@@ -355,8 +360,9 @@ F-statistic: 27.08 on 7 and 62 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>The authors used F-tests to examine the hypothesis the the distances that birds migrate are shortening over time due to climate change. The tables illustrate the different variables that they considered for their final model, indicating whether or not each variable was included.</p>
 <p><img src="images/Table1.png" class="img-fluid"></p>
 <p><img src="images/Table2.png" class="img-fluid"></p>
-<p><strong>b) Visual Recommendations</strong></p>
-<p>The authors did not include a figure associated with the data presented in these tables, but it may have been helpful to visualize the differences in the accuracy of the predictor variables. The authors could have included a bar graph with variables on the x-axis and p-values on the y-axis. The variables could be sorted in decreasing order of p-value, with the colors of each bar along a gradient from lighter to darker. Since there is a large range of p-values, there should be a jump in the y-axis from about 0.1 to 0.0001 to illustrate each variable. Presenting the table data in this format would make it easier for readers to identify which variables are the strongest predictors, and making smaller p-values darker would provide a visual indicator that the associated variables are ‘weightier’ and have a greater effect on the response variable.</p>
+<p><strong>b) Visual Clarity</strong></p>
+<p><strong>c) Aesthetic Clarity</strong></p>
+<p><strong>d) Recommendations</strong> The authors did not include a figure associated with the data presented in these tables, but it may have been helpful to visualize the differences in the accuracy of the predictor variables. The authors could have included a bar graph with variables on the x-axis and p-values on the y-axis. The variables could be sorted in decreasing order of p-value, with the colors of each bar along a gradient from lighter to darker. Since there is a large range of p-values, there should be a jump in the y-axis from about 0.1 to 0.0001 to illustrate each variable. Presenting the table data in this format would make it easier for readers to identify which variables are the strongest predictors, and making smaller p-values darker would provide a visual indicator that the associated variables are ‘weightier’ and have a greater effect on the response variable.</p>
 </section>
 
 </main>
